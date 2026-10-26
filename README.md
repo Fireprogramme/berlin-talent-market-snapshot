@@ -1,83 +1,58 @@
 # Berlin Talent Market Snapshot
 
-An interactive, responsive recruitment research portfolio project built with **HTML, CSS and vanilla JavaScript**. No build step, npm packages, database, API keys or external libraries required.
+**Berlin Talent Market Snapshot** is an interactive recruitment research dashboard exploring technology job advertisements in Berlin. It brings together job listings, technical skills, seniority levels, language requirements and source-verification information in one place.
 
-## Important data disclosure
+**[Explore the live dashboard](https://fireprogramme.github.io/berlin-talent-market-snapshot/)**
 
-**This is a research prototype, not a live job board or a verified snapshot of current hiring.** The seven seed records came from an earlier manual collection exercise; the original advertisements and their extracted details have **not been independently reverified** for this release. All records are marked `unverified`. Source links may be stale or broken. Do not claim that all seven positions are currently hiring or that this sample represents Berlin's overall job market.
+## Project overview
 
-## Features
+This project combines an interest in recruitment and talent market intelligence with practical web development and data analysis. It is designed to make a small, manually collected set of technology vacancies easier to explore, compare and interpret.
 
-- Responsive dashboard and accessible navigation
-- Search across employers, roles, locations and skills
-- Category, seniority and verification filters
-- Dynamic skill-frequency, seniority and language charts
-- Verification coverage and transparent limitations
-- Source links and per-record metadata
-- CSV export of the filtered sample
-- GitHub Pages compatible, with relative asset paths
+The dashboard is built using **HTML, CSS, vanilla JavaScript and JSON**, with no backend or external charting library.
 
-## Run locally
+## What the dashboard does
 
-Open this folder in VS Code and select **Open with Live Server** on `index.html`.
+- **Job explorer:** Browse advertisements and filter by keyword, role category, seniority and verification status.
+- **Skills analysis:** Compare how frequently technical skills appear across the selected advertisements.
+- **Recruitment intelligence:** Explore the distribution of seniority labels and stated language requirements.
+- **Research insights:** View summary observations generated from the current dataset and filters.
+- **Data quality:** See whether each listing has been checked against its original source.
+- **CSV export:** Download the filtered records for further analysis.
 
-Alternatively, from the project directory run:
+The layout is responsive and works on desktop and mobile screens.
 
-```bash
-python3 -m http.server 8000
+## Data and methodology
+
+The initial dataset contains **seven manually collected technology job records** with employer names, role titles, locations, skill labels and links to original advertisements.
+
+The dashboard counts a skill once per advertisement and groups records by their stored seniority and language labels. Charts and observations describe the selected sample, **not the entire Berlin labour market**.
+
+**Research limitation:** The original advertisements have not been independently reverified for this release. All seven records are currently marked **unverified**, so the project should not be interpreted as a live job board or a verified measure of current hiring demand. Source links may become outdated.
+
+## Technology
+
+- **HTML5** — page structure and dashboard sections
+- **CSS3** — responsive styling and chart presentation
+- **JavaScript** — data loading, filtering, analysis and export
+- **JSON** — structured vacancy records
+- **GitHub Pages** — static website hosting
+
+## Project structure
+
+```text
+index.html          Dashboard structure
+style.css           Responsive design
+script.js           Filtering, analysis and interaction
+jobs.json           Research dataset
+tests/validate.mjs  Dataset validation
+LICENSE             MIT license
 ```
 
-Then visit `http://localhost:8000` in your browser. Do not open `index.html` with `file://`, since `fetch('jobs.json')` requires HTTP in many browsers.
+## Project links
 
-## Publish to GitHub Pages
-
-1. Create a new **public** GitHub repository named `berlin-talent-market-snapshot`.
-2. Upload the contents of this folder to the repository root (including `index.html`, `style.css`, `script.js` and `jobs.json`).
-3. In the repository, open **Settings → Pages**.
-4. Under **Build and deployment**, select **Deploy from a branch**, choose `main` and `/ (root)`, then **Save**.
-5. Wait for GitHub Pages to publish the site. Its URL will usually have the format `https://YOUR_USERNAME.github.io/berlin-talent-market-snapshot/`.
-6. Open the live page and verify charts, filtering, source links and CSV export.
-
-## Dataset schema
-
-Each object in `jobs.json` has: `id`, `company`, `title`, `location`, `category`, `seniority`, `skills`, `requiredSkills`, `preferredSkills`, `language`, `workMode`, `source`, `dateRecorded`, `dateVerified`, `verificationStatus`, `notes`.
-
-- `skills`: observed skills; not necessarily all explicitly required.
-- `requiredSkills` and `preferredSkills`: empty until checked against the original advertisement.
-- `dateRecorded`: date from the earlier collection record; **not proof of a verification**.
-- `dateVerified`: `null` until a human reviews the original source; then use an ISO date (`YYYY-MM-DD`).
-- `verificationStatus`: `unverified`, `active` or `expired`. The dashboard recognizes `active`/`expired` only if `dateVerified` is populated.
-- `notes`: document source discrepancies, assumptions and changes.
-
-### Manual audit protocol
-
-1. Open the employer's original advertisement link.
-2. Check employer, title, location, work arrangement and language requirement.
-3. Determine whether the job is **currently advertised** or **no longer available**; if inconclusive, keep `unverified`.
-4. Copy only explicitly stated required/preferred skills into the appropriate arrays.
-5. Record the actual review date in `dateVerified`, set `verificationStatus` accordingly and explain uncertainties in `notes`.
-6. Add more records across software engineering, cloud, data, AI, junior, mid-level and senior roles. Avoid drawing population-level conclusions from a convenience sample.
-
-## Analysis rules
-
-- Skill names are normalized for known aliases; each skill counts once per advertisement.
-- Seniority is inferred from the stored `seniority` label, not the title or years of experience.
-- Language groups are inferred from the stored `language` label; ambiguous values remain ambiguous.
-- Charts and insights update with filters, while the four overview metrics describe the complete dataset.
-- Verified status requires a `dateVerified` value.
-- The dataset is non-random, small and heavily weighted toward data/AI positions. The charts are **descriptive only**.
-
-## Testing
-
-Run `node tests/validate.mjs` to check JSON structure, unique IDs, source URL formats and key dataset assumptions. For an additional syntax check, run `node --check script.js`.
-
-## CV-ready description (accurate at current stage)
-
-**Berlin Talent Market Snapshot — Independent Recruitment Research Dashboard**  
-Built a responsive JavaScript dashboard to explore a manually collected sample of Berlin technology job advertisements, including skill-frequency analysis, seniority/language segmentation, data-quality tracking, interactive filters and CSV export. Documented source links, research limitations and a repeatable verification workflow.
-
-**Do not** claim the project tracks live hiring demand, covers 30 verified jobs, or provides validated Berlin-wide market insights until those improvements are actually completed.
+**Live website:** https://fireprogramme.github.io/berlin-talent-market-snapshot/  
+**Source code:** https://github.com/Fireprogramme/berlin-talent-market-snapshot
 
 ## License
 
-MIT — see `LICENSE`.
+MIT — see [LICENSE](LICENSE).
