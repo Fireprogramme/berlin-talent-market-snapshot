@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A transparent, interactive research sample of Berlin technology job advertisements, skills and recruitment requirements.">
+  <meta name="theme-color" content="#101b30">
+  <title>Berlin Talent Market Snapshot | Recruitment Research</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="layout">
+  <aside class="sidebar" aria-label="Site navigation">
+    <div class="brand"><div class="brandmark">B<span>.</span></div><div><strong>BERLIN / TALENT</strong><small>MARKET INTELLIGENCE</small></div></div>
+    <div class="nav-label">EXPLORE</div>
+    <nav aria-label="Sections">
+      <a href="#overview">01 <span>Overview</span></a>
+      <a href="#explorer">02 <span>Job explorer</span></a>
+      <a href="#analytics">03 <span>Market signals</span></a>
+      <a href="#quality">04 <span>Data quality</span></a>
+      <a href="#methodology">05 <span>Methodology</span></a>
+    </nav>
+    <div class="sidebar-foot"><span class="dot"></span> Independent portfolio project <small>Version 1.0 · Research prototype</small></div>
+  </aside>
+  <main id="main" class="main">
+    <header class="hero" id="overview">
+      <div class="hero-top"><span class="eyebrow">BERLIN, GERMANY / TECH RECRUITMENT</span><span class="pill">RESEARCH SAMPLE · NOT LIVE</span></div>
+      <h1>Talent market,<br><em>made visible.</em></h1>
+      <p>Explore recorded technology vacancies, in-demand skills, seniority and language requirements through a transparent, reproducible research sample.</p>
+      <div class="hero-bottom"><span>Independent recruitment intelligence project</span><span id="sampleUpdated">Dataset review: unverified</span></div>
+    </header>
+
+    <section class="section" aria-labelledby="overviewHeading">
+      <div class="section-title"><div><span class="eyebrow">01 / THE DATASET</span><h2 id="overviewHeading">Market overview</h2></div><p>Metrics cover the entire recorded sample</p></div>
+      <div class="metrics">
+        <article class="metric"><span>JOB RECORDS</span><strong id="jobCount">—</strong><small>Collected advertisements</small></article>
+        <article class="metric"><span>EMPLOYERS</span><strong id="companyCount">—</strong><small>Unique organizations</small></article>
+        <article class="metric"><span>SKILLS</span><strong id="skillCount">—</strong><small>Unique normalized skills</small></article>
+        <article class="metric"><span>ROLE CATEGORIES</span><strong id="categoryCount">—</strong><small>Research classifications</small></article>
+      </div>
+    </section>
+
+    <section class="section" id="explorer" aria-labelledby="explorerHeading">
+      <div class="section-title"><div><span class="eyebrow">02 / JOB EXPLORER</span><h2 id="explorerHeading">Explore the records</h2></div><span class="count" id="resultCount" aria-live="polite">Loading records…</span></div>
+      <div class="notice"><strong>Research transparency:</strong> These are previously collected job-ad records, not confirmed current openings. All seven start as <strong>unverified</strong> until individually audited against their source pages.</div>
+      <div class="filters">
+        <label class="search-wrap"><span class="sr-only">Search jobs</span><input id="searchInput" type="search" placeholder="Search role, employer, location or skill…" autocomplete="off"></label>
+        <label><span class="sr-only">Category</span><select id="categoryFilter"><option value="all">All categories</option></select></label>
+        <label><span class="sr-only">Seniority</span><select id="seniorityFilter"><option value="all">All seniority levels</option></select></label>
+        <label><span class="sr-only">Verification status</span><select id="statusFilter"><option value="all">All statuses</option><option value="active">Verified active</option><option value="expired">Verified expired</option><option value="unverified">Unverified</option></select></label>
+        <button type="button" class="btn ghost" id="resetFilters">Reset</button>
+        <button type="button" class="btn primary" id="exportCSV">↓ Export CSV</button>
+      </div>
+      <div class="job-grid" id="jobGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="section" id="analytics" aria-labelledby="analyticsHeading">
+      <div class="section-title"><div><span class="eyebrow">03 / MARKET SIGNALS</span><h2 id="analyticsHeading">What the sample shows</h2></div><p>Charts respond to your filters</p></div>
+      <div class="charts">
+        <article class="panel panel-wide"><div class="panel-head"><div><h3>Technical skill frequency</h3><p>Number of selected ads mentioning each skill</p></div><span class="panel-label">TOP 10</span></div><div id="skillsChart" class="chart"></div></article>
+        <article class="panel"><div class="panel-head"><div><h3>Seniority distribution</h3><p>Classified from recorded labels</p></div></div><div id="seniorityChart" class="chart"></div></article>
+        <article class="panel"><div class="panel-head"><div><h3>Language requirements</h3><p>Based on recorded wording</p></div></div><div id="languageChart" class="chart"></div></article>
+      </div>
+      <div class="insights"><div class="panel-head"><div><h3>Research observations</h3><p>Automatically calculated; descriptive, not Berlin-wide estimates</p></div></div><div id="insightsList" class="insights-grid"></div></div>
+    </section>
+
+    <section class="section" id="quality" aria-labelledby="qualityHeading">
+      <div class="section-title"><div><span class="eyebrow">04 / DATA INTEGRITY</span><h2 id="qualityHeading">Verification tracker</h2></div><p>Applies to filtered records</p></div>
+      <div class="quality-grid">
+        <div class="quality-card"><span>VERIFIED ACTIVE</span><strong id="activeCount">—</strong></div>
+        <div class="quality-card"><span>VERIFIED EXPIRED</span><strong id="expiredCount">—</strong></div>
+        <div class="quality-card"><span>UNVERIFIED</span><strong id="unverifiedCount">—</strong></div>
+        <div class="quality-card"><span>VERIFICATION COVERAGE</span><strong id="verificationRate">—</strong></div>
+      </div>
+      <p class="footnote">Verification coverage = (verified active + verified expired) ÷ selected records. An expired vacancy is still a useful historical observation, but it is not an open position.</p>
+    </section>
+
+    <section class="section" id="methodology" aria-labelledby="methodHeading">
+      <div class="section-title"><div><span class="eyebrow">05 / RESEARCH NOTES</span><h2 id="methodHeading">Methodology & limitations</h2></div></div>
+      <div class="method-grid">
+        <article><span>01</span><h3>Purpose</h3><p>Demonstrate how public vacancy records can be structured into actionable, auditable recruitment research.</p></article>
+        <article><span>02</span><h3>Collection</h3><p>Seven previously recorded advertisements from employer-linked career pages. Original links are retained. Source content and availability have not yet been reverified.</p></article>
+        <article><span>03</span><h3>Cleaning</h3><p>Each skill counts at most once per advertisement. Equivalent labels such as “Spark” and “Apache Spark” are normalized; PySpark remains distinct.</p></article>
+        <article><span>04</span><h3>Interpretation</h3><p>Seniority and language categories are derived from stored descriptions and may require correction during manual source review.</p></article>
+        <article><span>05</span><h3>Verification</h3><p>Records are unverified by default. Change a record to active or expired only after opening the original source and documenting the result.</p></article>
+        <article><span>06</span><h3>Limitations</h3><p>Small, non-random, data-role-heavy sample; not a live feed, market-wide vacancy count, hiring trend or representative estimate.</p></article>
+      </div>
+      <div class="next-step"><strong>Research roadmap</strong><p>Audit each original listing, record a genuine verification date, separate required from preferred skills, expand across junior/mid/senior roles, and only then publish stronger market conclusions.</p></div>
+    </section>
+    <footer>BERLIN TALENT MARKET SNAPSHOT <span>Independent research portfolio · Built with HTML, CSS & JavaScript</span></footer>
+  </main>
+</div>
+</body>
+</html>
